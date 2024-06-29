@@ -1,5 +1,7 @@
 import dht
 
+print("imported")
+
 class DHT:
 
     def __init__(self, model: str, pin: int):
