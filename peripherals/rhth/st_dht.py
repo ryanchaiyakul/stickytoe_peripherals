@@ -1,6 +1,6 @@
 import dht
+import json
 
-print("imported")
 
 class DHT:
 
@@ -10,10 +10,16 @@ class DHT:
         elif model == "dht11":
             self.__sensor = dht.DHT11(pin)
         else:
-            return ValueError
+            raise ValueError
 
-def get_instance(config):
-    pass
+    def callback(self, msg: str):
+        self.__sensor.measure()
+        data = {'temperature': self.c_to_f(self.__sensor.temperature()), 'humidity': self.__sensor.humidity()}
+        return json.dumps(data)
 
-def hello_world():
-    print("hi from dht")
+    @staticmethod
+    def c_to_f(c):
+        return c * 1.8 + 32
+
+def get_instance(config: dict):
+    return DHT(**config)
