@@ -1,4 +1,4 @@
-from machine import I2C
+import machine.I2C import I2C
 import time
 
 R_HIGH   = const(1)
