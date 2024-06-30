@@ -76,7 +76,7 @@ class SHT31(object):
         return temp, 100 * (h / 65535)
 
     def callback(self, msg: str):
-        temperature, humidity = sensor.get_temp_humi(celsius=False)
+        temperature, humidity = self.get_temp_humi(celsius=False)
         return {'temperature': temperature, 'humidity': humidity}
     
 
