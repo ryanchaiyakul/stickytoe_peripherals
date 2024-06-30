@@ -1,5 +1,6 @@
 from machine import I2C, Pin
 import time
+import json
 
 R_HIGH   = const(1)
 R_MEDIUM = const(2)
@@ -77,7 +78,7 @@ class SHT31(object):
 
     def callback(self, msg: str):
         temperature, humidity = self.get_temp_humi(celsius=False)
-        return {'temperature': temperature, 'humidity': humidity}
+        return json.dumps({'temperature': temperature, 'humidity': humidity})
     
 
 def get_instance(config):
