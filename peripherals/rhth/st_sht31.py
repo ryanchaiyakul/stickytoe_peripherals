@@ -1,5 +1,4 @@
-import machine
-from machine import I2C
+from machine import I2C, Pin
 import time
 
 R_HIGH   = const(1)
@@ -82,5 +81,5 @@ class SHT31(object):
     
 
 def get_instance(config):
-    i2c = machine.I2C(1, scl=machine.Pin(config['scl']), sda=machine.Pin(config['sda']))       # write buffer of audio samples to I2S device
+    i2c = I2C(1, scl=Pin(config['scl']), sda=Pin(config['sda']))       # write buffer of audio samples to I2S device
     return SHT31(i2c, config['addr'])
